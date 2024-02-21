@@ -1,14 +1,25 @@
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted
+  dangerouslyAllowBrowser: true,
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY
 });
 
-async function main() {
+export async function getResponse(data: any) {
+  console.log('API', data)
+  
   const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: 'Say this is a test' }],
     model: 'gpt-3.5-turbo',
+    messages: [
+      {
+          role: 'system',
+          content: 'You are a helpful assistant'
+      },
+      {
+          role: data.role,
+          content: data.content
+      }
+    ]
   });
+  return console.log(chatCompletion)
 }
-
-main();
