@@ -1,0 +1,18 @@
+*{
+  box-sizing: border-box;
+}
+body {
+  padding: 4%;
+  
+}
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  max-width: 600px;
+}
+input {
+  padding: 0.75rem;
+  font-size: 1rem;
+}
